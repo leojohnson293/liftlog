@@ -152,12 +152,10 @@
       <div class="card" style="margin-top:16px">
         <div class="card-label">Session type</div>
         <div class="session-grid">
-          <button class="session-pill selected" onclick="selectSession(this, 'Upper A — Push (calisthenics)')"><span class="pill-icon">🔼</span> Upper A — Push</button>
-          <button class="session-pill" onclick="selectSession(this, 'Upper B — Pull (calisthenics)')"><span class="pill-icon">🔽</span> Upper B — Pull</button>
-          <button class="session-pill" onclick="selectSession(this, 'Lower A — Quad dominant (gym)')"><span class="pill-icon">🦵</span> Lower A — Quads</button>
-          <button class="session-pill" onclick="selectSession(this, 'Lower B — Hip dominant (gym)')"><span class="pill-icon">🍑</span> Lower B — Hips</button>
-          <button class="session-pill" onclick="selectSession(this, 'Zone 2 cardio + core')"><span class="pill-icon">🫀</span> Zone 2 + Core</button>
-          <button class="session-pill" onclick="selectSession(this, 'HIIT')"><span class="pill-icon">⚡</span> HIIT</button>
+          <button class="session-pill selected" onclick="selectSession(this, 'Upper')"><span class="pill-icon">💪</span> Upper</button>
+          <button class="session-pill" onclick="selectSession(this, 'Lower')"><span class="pill-icon">🦵</span> Lower</button>
+          <button class="session-pill" onclick="selectSession(this, 'Full')"><span class="pill-icon">🏋🏾‍♀️</span> Full body</button>
+          <button class="session-pill" onclick="selectSession(this, 'Cardio')"><span class="pill-icon">🫀</span> Cardio</button>
         </div>
       </div>
       <div class="card">
@@ -269,7 +267,7 @@ const API = 'http://localhost:8000';
 // Food library is cached in localStorage when you tap "Sync"
 
 const today = new Date().toISOString().split('T')[0];
-let selectedSession = 'Upper A — Push (calisthenics)';
+let selectedSession = 'Upper';
 let selectedRpe = 8;
 let exCount = 0;
 let selectedItems = [];
