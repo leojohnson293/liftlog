@@ -25,432 +25,107 @@
     --radius:  14px;
     --bottom-safe: env(safe-area-inset-bottom, 16px);
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; background: var(--bg); color: var(--text); font-family: var(--body); font-size: 16px; overscroll-behavior: none; }
+  .app { display: flex; flex-direction: column; height: 100vh; height: 100dvh; max-width: 480px; margin: 0 auto; }
 
-  html, body {
-    height: 100%;
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--body);
-    font-size: 16px;
-    overscroll-behavior: none;
-  }
+  header { padding: 52px 20px 16px; background: var(--bg); flex-shrink: 0; }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-end; }
+  .brand { font-family: var(--display); font-size: 38px; font-weight: 800; letter-spacing: 2px; color: var(--accent); line-height: 1; }
+  .date-chip { font-size: 12px; color: var(--muted); font-weight: 500; background: var(--surface); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border); }
 
-  /* ── Shell ── */
-  .app {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    height: 100dvh;
-    max-width: 480px;
-    margin: 0 auto;
-  }
+  .tabs { display: flex; padding: 12px 20px 0; gap: 6px; flex-shrink: 0; }
+  .tab { flex: 1; padding: 10px 4px; border: none; border-radius: 10px; background: var(--surface); color: var(--muted); font-family: var(--display); font-size: 14px; font-weight: 700; letter-spacing: 0.5px; cursor: pointer; transition: all 0.15s; border: 1px solid transparent; }
+  .tab.active { background: var(--accent); color: #111; border-color: var(--accent); }
 
-  /* ── Header ── */
-  header {
-    padding: 52px 20px 16px;
-    background: var(--bg);
-    flex-shrink: 0;
-  }
+  .content { flex: 1; overflow-y: auto; padding: 16px 20px calc(var(--bottom-safe) + 16px); -webkit-overflow-scrolling: touch; }
 
-  .header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; }
+  .card-label { font-family: var(--display); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
 
-  .brand {
-    font-family: var(--display);
-    font-size: 38px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    color: var(--accent);
-    line-height: 1;
-  }
-
-  .date-chip {
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 500;
-    background: var(--surface);
-    padding: 6px 12px;
-    border-radius: 20px;
-    border: 1px solid var(--border);
-  }
-
-  /* ── Tab bar ── */
-  .tabs {
-    display: flex;
-    padding: 12px 20px 0;
-    gap: 6px;
-    flex-shrink: 0;
-  }
-
-  .tab {
-    flex: 1;
-    padding: 10px 4px;
-    border: none;
-    border-radius: 10px;
-    background: var(--surface);
-    color: var(--muted);
-    font-family: var(--display);
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    transition: all 0.15s;
-    border: 1px solid transparent;
-  }
-
-  .tab.active {
-    background: var(--accent);
-    color: #111;
-    border-color: var(--accent);
-  }
-
-  /* ── Scrollable content ── */
-  .content {
-    flex: 1;
-    overflow-y: auto;
-    padding: 16px 20px calc(var(--bottom-safe) + 16px);
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* ── Cards ── */
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 16px;
-    margin-bottom: 12px;
-  }
-
-  .card-label {
-    font-family: var(--display);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 12px;
-  }
-
-  /* ── Forms ── */
   .field { margin-bottom: 12px; }
-
-  .field label {
-    display: block;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 6px;
-  }
-
-  input, select, textarea {
-    width: 100%;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 13px 14px;
-    color: var(--text);
-    font-family: var(--body);
-    font-size: 16px; /* prevents iOS zoom */
-    appearance: none;
-    transition: border-color 0.15s;
-  }
-
-  input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-  }
-
+  .field label { display: block; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  input, select, textarea { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 13px 14px; color: var(--text); font-family: var(--body); font-size: 16px; appearance: none; transition: border-color 0.15s; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
   textarea { resize: none; min-height: 80px; }
-
   .row { display: flex; gap: 10px; }
   .row .field { flex: 1; }
 
-  /* ── Buttons ── */
-  .btn {
-    width: 100%;
-    padding: 16px;
-    border: none;
-    border-radius: var(--radius);
-    font-family: var(--display);
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: all 0.15s;
-    text-transform: uppercase;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: #111;
-  }
-
+  .btn { width: 100%; padding: 16px; border: none; border-radius: var(--radius); font-family: var(--display); font-size: 18px; font-weight: 800; letter-spacing: 1px; cursor: pointer; transition: all 0.15s; text-transform: uppercase; }
+  .btn-primary { background: var(--accent); color: #111; }
   .btn-primary:active { opacity: 0.8; transform: scale(0.98); }
-
-  .btn-ghost {
-    background: var(--surface);
-    color: var(--text);
-    border: 1px solid var(--border);
-    font-size: 14px;
-    padding: 12px;
-  }
-
-  .btn-danger {
-    background: none;
-    border: 1px solid #f8717133;
-    color: var(--red);
-    font-size: 12px;
-    padding: 8px 14px;
-    width: auto;
-    border-radius: 8px;
-  }
-
+  .btn-ghost { background: var(--surface); color: var(--text); border: 1px solid var(--border); font-size: 14px; padding: 12px; }
+  .btn-danger { background: none; border: 1px solid #f8717133; color: var(--red); font-size: 12px; padding: 8px 14px; width: auto; border-radius: 8px; }
   .btn-save { margin-top: 8px; }
 
-  /* ── Exercise blocks ── */
-  .exercise-block {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px;
-    margin-bottom: 10px;
-  }
+  .exercise-block { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 10px; }
+  .ex-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .ex-header input { flex: 1; padding: 10px 12px; font-size: 15px; }
 
-  .ex-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 12px;
-  }
+  .sets-head, .set-row { display: grid; grid-template-columns: 28px 1fr 1fr 1fr; gap: 6px; margin-bottom: 6px; align-items: center; }
+  .sets-head span { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; text-align: center; }
+  .set-num { font-family: var(--display); font-size: 16px; font-weight: 700; color: var(--muted); text-align: center; }
+  .set-row input { padding: 10px 8px; font-size: 15px; text-align: center; border-radius: 8px; }
 
-  .ex-header input {
-    flex: 1;
-    padding: 10px 12px;
-    font-size: 15px;
-  }
-
-  /* ── Sets table ── */
-  .sets-head {
-    display: grid;
-    grid-template-columns: 28px 1fr 1fr 1fr;
-    gap: 6px;
-    margin-bottom: 6px;
-  }
-
-  .sets-head span {
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    text-align: center;
-  }
-
-  .set-row {
-    display: grid;
-    grid-template-columns: 28px 1fr 1fr 1fr;
-    gap: 6px;
-    margin-bottom: 6px;
-    align-items: center;
-  }
-
-  .set-num {
-    font-family: var(--display);
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--muted);
-    text-align: center;
-  }
-
-  .set-row input {
-    padding: 10px 8px;
-    font-size: 15px;
-    text-align: center;
-    border-radius: 8px;
-  }
-
-  .add-set-btn {
-    width: 100%;
-    padding: 10px;
-    background: none;
-    border: 1px dashed var(--border);
-    border-radius: 8px;
-    color: var(--muted);
-    font-family: var(--body);
-    font-size: 13px;
-    cursor: pointer;
-    margin-top: 4px;
-    transition: all 0.15s;
-  }
-
+  .add-set-btn { width: 100%; padding: 10px; background: none; border: 1px dashed var(--border); border-radius: 8px; color: var(--muted); font-family: var(--body); font-size: 13px; cursor: pointer; margin-top: 4px; transition: all 0.15s; }
   .add-set-btn:active { background: var(--card); }
 
-  /* ── RPE picker ── */
-  .rpe-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 6px;
-  }
+  .rpe-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+  .rpe-btn { padding: 14px 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--muted); font-family: var(--display); font-size: 18px; font-weight: 700; cursor: pointer; text-align: center; transition: all 0.12s; }
+  .rpe-btn.selected { background: var(--accent); color: #111; border-color: var(--accent); }
 
-  .rpe-btn {
-    padding: 14px 4px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--muted);
-    font-family: var(--display);
-    font-size: 18px;
-    font-weight: 700;
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.12s;
-  }
-
-  .rpe-btn.selected {
-    background: var(--accent);
-    color: #111;
-    border-color: var(--accent);
-  }
-
-  /* ── Session type pills ── */
-  .session-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .session-pill {
-    padding: 14px 16px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    color: var(--muted);
-    font-family: var(--body);
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.12s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
+  .session-grid { display: flex; flex-direction: column; gap: 8px; }
+  .session-pill { padding: 14px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; color: var(--muted); font-family: var(--body); font-size: 14px; font-weight: 500; cursor: pointer; text-align: left; transition: all 0.12s; display: flex; align-items: center; gap: 10px; }
   .session-pill .pill-icon { font-size: 18px; }
+  .session-pill.selected { background: #FFD23F18; border-color: var(--accent); color: var(--text); }
 
-  .session-pill.selected {
-    background: #FFD23F18;
-    border-color: var(--accent);
-    color: var(--text);
-  }
-
-  /* ── Toast ── */
-  .toast {
-    position: fixed;
-    bottom: calc(var(--bottom-safe) + 24px);
-    left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background: var(--green);
-    color: #111;
-    font-family: var(--display);
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    padding: 14px 28px;
-    border-radius: 40px;
-    opacity: 0;
-    transition: all 0.25s cubic-bezier(.4,0,.2,1);
-    z-index: 999;
-    white-space: nowrap;
-  }
-
+  .toast { position: fixed; bottom: calc(var(--bottom-safe) + 24px); left: 50%; transform: translateX(-50%) translateY(100px); background: var(--green); color: #111; font-family: var(--display); font-size: 15px; font-weight: 700; letter-spacing: 0.5px; padding: 14px 28px; border-radius: 40px; opacity: 0; transition: all 0.25s cubic-bezier(.4,0,.2,1); z-index: 999; white-space: nowrap; }
   .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
   .toast.error { background: var(--red); color: #fff; }
 
-  /* ── History entries ── */
-  .entry {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px 16px;
-    margin-bottom: 8px;
-  }
-
-  .entry-date {
-    font-size: 11px;
-    color: var(--muted);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 4px;
-  }
-
-  .entry-title {
-    font-family: var(--display);
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    color: var(--text);
-    line-height: 1.1;
-  }
-
+  .entry { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 8px; }
+  .entry-date { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .entry-title { font-family: var(--display); font-size: 20px; font-weight: 700; letter-spacing: 0.5px; color: var(--text); line-height: 1.1; }
   .entry-sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
 
-  .entry-macros {
-    display: flex;
-    gap: 12px;
-    margin-top: 8px;
-    flex-wrap: wrap;
-  }
-
-  .macro {
-    font-size: 12px;
-    color: var(--muted);
-    background: var(--card);
-    padding: 4px 10px;
-    border-radius: 20px;
-    border: 1px solid var(--border);
-  }
-
-  .macro b { color: var(--accent); }
-
-  /* ── Empty state ── */
-  .empty {
-    text-align: center;
-    padding: 50px 20px;
-    color: var(--muted);
-  }
-
+  .empty { text-align: center; padding: 50px 20px; color: var(--muted); }
   .empty-icon { font-size: 40px; margin-bottom: 12px; opacity: 0.5; }
   .empty p { font-size: 14px; }
 
-  /* ── Section label ── */
-  .section-label {
-    font-family: var(--display);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin: 20px 0 10px;
-  }
-
-  /* ── Loading ── */
+  .section-label { font-family: var(--display); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 20px 0 10px; }
   .loading { text-align: center; padding: 40px; color: var(--muted); font-size: 13px; }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+  /* Food search */
+  .search-wrap { position: relative; margin-bottom: 12px; }
+  .search-results { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-top: 6px; max-height: 280px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  .search-result { padding: 12px 14px; border-bottom: 1px solid var(--border); cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .search-result:last-child { border-bottom: none; }
+  .search-result:active { background: var(--card); }
+  .search-result-info { flex: 1; min-width: 0; }
+  .search-result-name { font-size: 14px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .search-result-sub { font-size: 11px; color: var(--muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .source-pill { font-size: 9px; padding: 2px 6px; border-radius: 8px; background: var(--card); color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-left: 4px; font-weight: 700; }
+  .source-pill.local { background: #FFD23F25; color: var(--accent); }
 
-  .card, .entry { animation: fadeUp 0.2s ease; }
+  .item-row { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+  .item-info { flex: 1; min-width: 0; }
+  .item-name { font-size: 14px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .item-macros { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .item-grams { width: 70px; padding: 8px 10px; font-size: 14px; text-align: center; border-radius: 8px; }
+  .item-remove { background: none; border: none; color: var(--muted); font-size: 18px; cursor: pointer; padding: 4px 8px; }
+
+  .macros-summary { background: linear-gradient(135deg, #FFD23F18, #FFD23F08); border: 1px solid #FFD23F40; border-radius: 12px; padding: 12px 14px; margin-bottom: 12px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .macro-stat { text-align: center; }
+  .macro-val { font-family: var(--display); font-size: 22px; font-weight: 700; color: var(--accent); line-height: 1; }
+  .macro-label { font-size: 10px; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .template-pill { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: all 0.12s; }
+  .template-pill:active { background: var(--card); }
+  .template-name { font-size: 14px; font-weight: 500; color: var(--text); }
+  .template-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .card, .entry, .item-row, .search-results { animation: fadeUp 0.2s ease; }
 </style>
 </head>
 <body>
@@ -467,58 +142,35 @@
     <button class="tab active" onclick="showTab('workout')">Workout</button>
     <button class="tab" onclick="showTab('meal')">Meal</button>
     <button class="tab" onclick="showTab('weight')">Weight</button>
-    <button class="tab" onclick="showTab('history')">History</button>
+    <button class="tab" onclick="showTab('foods')">Foods</button>
   </div>
 
   <div class="content">
 
-    <!-- ── WORKOUT ── -->
+    <!-- WORKOUT -->
     <div id="tab-workout">
       <div class="card" style="margin-top:16px">
         <div class="card-label">Session type</div>
         <div class="session-grid">
-          <button class="session-pill selected" onclick="selectSession(this, 'Upper A — Push (calisthenics)')">
-            <span class="pill-icon">🔼</span> Upper A — Push
-          </button>
-          <button class="session-pill" onclick="selectSession(this, 'Upper B — Pull (calisthenics)')">
-            <span class="pill-icon">🔽</span> Upper B — Pull
-          </button>
-          <button class="session-pill" onclick="selectSession(this, 'Lower A — Quad dominant (gym)')">
-            <span class="pill-icon">🦵</span> Lower A — Quads
-          </button>
-          <button class="session-pill" onclick="selectSession(this, 'Lower B — Hip dominant (gym)')">
-            <span class="pill-icon">🍑</span> Lower B — Hips
-          </button>
-          <button class="session-pill" onclick="selectSession(this, 'Zone 2 cardio + core')">
-            <span class="pill-icon">🫀</span> Zone 2 + Core
-          </button>
-          <button class="session-pill" onclick="selectSession(this, 'HIIT')">
-            <span class="pill-icon">⚡</span> HIIT
-          </button>
+          <button class="session-pill selected" onclick="selectSession(this, 'Upper A — Push (calisthenics)')"><span class="pill-icon">🔼</span> Upper A — Push</button>
+          <button class="session-pill" onclick="selectSession(this, 'Upper B — Pull (calisthenics)')"><span class="pill-icon">🔽</span> Upper B — Pull</button>
+          <button class="session-pill" onclick="selectSession(this, 'Lower A — Quad dominant (gym)')"><span class="pill-icon">🦵</span> Lower A — Quads</button>
+          <button class="session-pill" onclick="selectSession(this, 'Lower B — Hip dominant (gym)')"><span class="pill-icon">🍑</span> Lower B — Hips</button>
+          <button class="session-pill" onclick="selectSession(this, 'Zone 2 cardio + core')"><span class="pill-icon">🫀</span> Zone 2 + Core</button>
+          <button class="session-pill" onclick="selectSession(this, 'HIIT')"><span class="pill-icon">⚡</span> HIIT</button>
         </div>
       </div>
-
       <div class="card">
         <div class="card-label">Details</div>
         <div class="row">
-          <div class="field">
-            <label>Duration (min)</label>
-            <input type="number" id="wo-dur" placeholder="60" inputmode="numeric">
-          </div>
-          <div class="field">
-            <label>Date</label>
-            <input type="date" id="wo-date">
-          </div>
+          <div class="field"><label>Duration (min)</label><input type="number" id="wo-dur" placeholder="60" inputmode="numeric"></div>
+          <div class="field"><label>Date</label><input type="date" id="wo-date"></div>
         </div>
-        <div class="field">
-          <label>Notes</label>
-          <textarea id="wo-notes" placeholder="New PB, how you felt..."></textarea>
-        </div>
+        <div class="field"><label>Notes</label><textarea id="wo-notes" placeholder="New PB, how you felt..."></textarea></div>
       </div>
-
       <div class="card">
         <div class="card-label">RPE</div>
-        <div class="rpe-grid" id="rpe-grid">
+        <div class="rpe-grid">
           <button class="rpe-btn" onclick="selectRpe(this, 6)">6</button>
           <button class="rpe-btn" onclick="selectRpe(this, 7)">7</button>
           <button class="rpe-btn selected" onclick="selectRpe(this, 8)">8</button>
@@ -526,102 +178,82 @@
           <button class="rpe-btn" onclick="selectRpe(this, 10)">10</button>
         </div>
       </div>
-
       <div class="section-label">Exercises</div>
       <div id="ex-container"></div>
       <button class="btn btn-ghost" onclick="addExercise()" style="margin-bottom:12px">+ Add exercise</button>
-
       <button class="btn btn-primary btn-save" onclick="saveWorkout()">Save workout</button>
     </div>
 
-    <!-- ── MEAL ── -->
+    <!-- MEAL -->
     <div id="tab-meal" style="display:none">
       <div class="card" style="margin-top:16px">
-        <div class="card-label">Meal</div>
-        <div class="field">
-          <label>Type</label>
-          <select id="m-type">
-            <option>Breakfast</option>
-            <option>Mid-morning snack</option>
-            <option>Lunch</option>
-            <option>Pre-workout</option>
-            <option>Dinner</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Description</label>
-          <input type="text" id="m-desc" placeholder="4 egg omelette + Greek yogurt">
-        </div>
-        <div class="field">
-          <label>Date</label>
-          <input type="date" id="m-date">
-        </div>
+        <div class="card-label">Templates — quick reuse</div>
+        <div id="template-list"><div class="loading">Loading...</div></div>
       </div>
 
       <div class="card">
-        <div class="card-label">Macros</div>
+        <div class="card-label">Meal details</div>
         <div class="row">
           <div class="field">
-            <label>Calories</label>
-            <input type="number" id="m-kcal" placeholder="450" inputmode="numeric">
+            <label>Type</label>
+            <select id="m-type">
+              <option>Breakfast</option><option>Mid-morning snack</option><option>Lunch</option>
+              <option>Pre-workout</option><option>Dinner</option><option>Other</option>
+            </select>
           </div>
-          <div class="field">
-            <label>Protein (g)</label>
-            <input type="number" id="m-prot" placeholder="55" inputmode="decimal">
-          </div>
+          <div class="field"><label>Date</label><input type="date" id="m-date"></div>
         </div>
-        <div class="row">
-          <div class="field">
-            <label>Carbs (g)</label>
-            <input type="number" id="m-carbs" placeholder="30" inputmode="decimal">
-          </div>
-          <div class="field">
-            <label>Fat (g)</label>
-            <input type="number" id="m-fat" placeholder="18" inputmode="decimal">
-          </div>
+        <div class="field"><label>Description (optional)</label><input type="text" id="m-desc" placeholder="e.g. Post-gym lunch"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Add foods from library</div>
+        <div class="search-wrap">
+          <input type="text" id="food-search" placeholder="Search your foods..." oninput="searchFoods()">
+          <div class="search-results" id="search-results" style="display:none"></div>
+        </div>
+        <div id="selected-items"></div>
+        <div class="macros-summary" id="macros-summary" style="display:none">
+          <div class="macro-stat"><div class="macro-val" id="m-tot-kcal">0</div><div class="macro-label">kcal</div></div>
+          <div class="macro-stat"><div class="macro-val" id="m-tot-prot">0</div><div class="macro-label">protein</div></div>
+          <div class="macro-stat"><div class="macro-val" id="m-tot-carbs">0</div><div class="macro-label">carbs</div></div>
+          <div class="macro-stat"><div class="macro-val" id="m-tot-fat">0</div><div class="macro-label">fat</div></div>
         </div>
       </div>
 
       <button class="btn btn-primary btn-save" onclick="saveMeal()">Save meal</button>
+      <button class="btn btn-ghost" onclick="saveAsTemplate()" style="margin-top:8px">Save as template</button>
     </div>
 
-    <!-- ── WEIGHT ── -->
+    <!-- WEIGHT -->
     <div id="tab-weight" style="display:none">
       <div class="card" style="margin-top:16px">
         <div class="card-label">Today's weigh-in</div>
-        <div class="field">
-          <label>Weight (kg)</label>
-          <input type="number" id="wt-kg" placeholder="83.0" step="0.1" inputmode="decimal" style="font-size:32px;font-family:var(--display);font-weight:700;text-align:center;padding:20px;">
-        </div>
+        <div class="field"><label>Weight (kg)</label><input type="number" id="wt-kg" placeholder="83.0" step="0.1" inputmode="decimal" style="font-size:32px;font-family:var(--display);font-weight:700;text-align:center;padding:20px;"></div>
         <div class="row">
-          <div class="field">
-            <label>Waist (cm)</label>
-            <input type="number" id="wt-waist" placeholder="—" step="0.1" inputmode="decimal">
-          </div>
-          <div class="field">
-            <label>Date</label>
-            <input type="date" id="wt-date">
-          </div>
+          <div class="field"><label>Waist (cm)</label><input type="number" id="wt-waist" placeholder="—" step="0.1" inputmode="decimal"></div>
+          <div class="field"><label>Date</label><input type="date" id="wt-date"></div>
         </div>
-        <div class="field">
-          <label>Notes</label>
-          <input type="text" id="wt-notes" placeholder="Morning fasted">
-        </div>
+        <div class="field"><label>Notes</label><input type="text" id="wt-notes" placeholder="Morning fasted"></div>
       </div>
       <button class="btn btn-primary btn-save" onclick="saveWeight()">Save weight</button>
     </div>
 
-    <!-- ── HISTORY ── -->
-    <div id="tab-history" style="display:none">
-      <div style="margin-top:16px">
-        <div class="section-label">Recent workouts</div>
-        <div id="h-workouts"><div class="loading">Loading...</div></div>
-        <div class="section-label" style="margin-top:20px">Recent meals</div>
-        <div id="h-meals"><div class="loading">Loading...</div></div>
-        <div class="section-label" style="margin-top:20px">Weight log</div>
-        <div id="h-weights"><div class="loading">Loading...</div></div>
+    <!-- FOODS LIBRARY (offline view) -->
+    <div id="tab-foods" style="display:none">
+      <div class="card" style="margin-top:16px">
+        <div class="card-label">Sync from Mac</div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.5">
+          Connects to the API to download your full food library + templates so they work offline at the gym. Re-sync whenever you add new foods on the desktop.
+        </p>
+        <button class="btn btn-primary" onclick="syncFromAPI()">Sync now</button>
+        <div style="margin-top:14px;font-size:12px;color:var(--muted);text-align:center">
+          <span id="cache-status">Loading cache...</span>
+        </div>
       </div>
+
+      <div class="section-label">Cached library</div>
+      <div id="foods-list"><div class="loading">Loading...</div></div>
     </div>
 
   </div>
@@ -630,69 +262,88 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ── Config ────────────────────────────────────────────────────────────────────
-// Offline mode: saves JSON files to your phone for AirDrop home.
-// The watcher.py script on your Mac will pick them up automatically.
+// ── Config — change to your Mac IP for syncing food library ──
+const API = 'http://localhost:8000';
+
+// Offline mode: meals/workouts/weights download as JSON files for AirDrop home
+// Food library is cached in localStorage when you tap "Sync"
 
 const today = new Date().toISOString().split('T')[0];
 let selectedSession = 'Upper A — Push (calisthenics)';
 let selectedRpe = 8;
 let exCount = 0;
+let selectedItems = [];
+let searchTimer = null;
+let cachedFoods = [];
+let cachedTemplates = [];
 
-// ── JSON download helper ──────────────────────────────────────────────────────
+// ── Load cached food library from localStorage ──
+function loadCache() {
+  try {
+    cachedFoods = JSON.parse(localStorage.getItem('foods') || '[]');
+    cachedTemplates = JSON.parse(localStorage.getItem('templates') || '[]');
+  } catch(e) {
+    cachedFoods = []; cachedTemplates = [];
+  }
+}
+
+// ── Sync from API (call when on WiFi) ──
+async function syncFromAPI() {
+  try {
+    const [foods, templates] = await Promise.all([
+      fetch(API + '/foods').then(r => r.json()),
+      fetch(API + '/templates').then(r => r.json()),
+    ]);
+    localStorage.setItem('foods', JSON.stringify(foods));
+    localStorage.setItem('templates', JSON.stringify(templates));
+    cachedFoods = foods;
+    cachedTemplates = templates;
+    toast(`Synced ${foods.length} foods, ${templates.length} templates ✓`);
+    if (document.getElementById('tab-foods').style.display !== 'none') loadFoods();
+    if (document.getElementById('tab-meal').style.display !== 'none') loadTemplates();
+  } catch(e) {
+    toast('Sync failed — is the API running?', true);
+  }
+}
+
+// ── JSON download helper ──
 function downloadJSON(data, type) {
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
   const filename = `liftlog_${type}_${timestamp}.json`;
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  a.click();
+  a.href = url; a.download = filename; a.click();
   URL.revokeObjectURL(url);
-  return filename;
 }
 
-// ── Init ──────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   const d = new Date();
-  document.getElementById('date-chip').textContent =
-    d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
-  ['wo-date', 'm-date', 'wt-date'].forEach(id => {
-    document.getElementById(id).value = today;
-  });
-  // Default RPE=8 selected
-  document.querySelectorAll('.rpe-btn').forEach(b => {
-    if (b.textContent.trim() === '8') b.classList.add('selected');
-  });
+  document.getElementById('date-chip').textContent = d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+  ['wo-date', 'm-date', 'wt-date'].forEach(id => document.getElementById(id).value = today);
+  loadCache();
 });
 
-// ── Tabs ──────────────────────────────────────────────────────────────────────
 function showTab(name) {
-  ['workout','meal','weight','history'].forEach(t => {
+  ['workout','meal','weight','foods'].forEach(t => {
     document.getElementById('tab-' + t).style.display = t === name ? '' : 'none';
   });
   document.querySelectorAll('.tab').forEach((el, i) => {
-    el.classList.toggle('active', ['workout','meal','weight','history'][i] === name);
+    el.classList.toggle('active', ['workout','meal','weight','foods'][i] === name);
   });
-  if (name === 'history') loadHistory();
+  if (name === 'meal')  loadTemplates();
+  if (name === 'foods') loadFoods();
 }
 
-// ── Session selector ──────────────────────────────────────────────────────────
 function selectSession(el, value) {
   document.querySelectorAll('.session-pill').forEach(b => b.classList.remove('selected'));
-  el.classList.add('selected');
-  selectedSession = value;
+  el.classList.add('selected'); selectedSession = value;
 }
-
-// ── RPE selector ──────────────────────────────────────────────────────────────
 function selectRpe(el, value) {
   document.querySelectorAll('.rpe-btn').forEach(b => b.classList.remove('selected'));
-  el.classList.add('selected');
-  selectedRpe = value;
+  el.classList.add('selected'); selectedRpe = value;
 }
 
-// ── Toast ─────────────────────────────────────────────────────────────────────
 function toast(msg, error = false) {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -700,7 +351,9 @@ function toast(msg, error = false) {
   setTimeout(() => t.className = 'toast', 2500);
 }
 
-// ── Exercises ─────────────────────────────────────────────────────────────────
+// (No API helper — this is offline mode. Files download as JSON for AirDrop)
+
+// ── Workout ──
 function addExercise() {
   exCount++;
   const id = exCount;
@@ -712,14 +365,11 @@ function addExercise() {
       <input type="text" placeholder="Exercise name" id="ex-name-${id}">
       <button class="btn btn-danger" onclick="document.getElementById('ex-${id}').remove()">✕</button>
     </div>
-    <div class="sets-head">
-      <span>#</span><span>Reps</span><span>kg</span><span>Notes</span>
-    </div>
+    <div class="sets-head"><span>#</span><span>Reps</span><span>kg</span><span>Notes</span></div>
     <div id="ex-rows-${id}"></div>
     <button class="add-set-btn" onclick="addSet(${id})">+ Add set</button>`;
   document.getElementById('ex-container').appendChild(div);
   addSet(id);
-  // Scroll to new exercise
   setTimeout(() => div.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
 }
 
@@ -728,15 +378,10 @@ function addSet(exId) {
   const num = container.children.length + 1;
   const div = document.createElement('div');
   div.className = 'set-row';
-  div.innerHTML = `
-    <div class="set-num">${num}</div>
-    <input type="number" placeholder="10" inputmode="numeric">
-    <input type="number" placeholder="0" step="0.5" inputmode="decimal">
-    <input type="text" placeholder="—">`;
+  div.innerHTML = `<div class="set-num">${num}</div><input type="number" placeholder="10" inputmode="numeric"><input type="number" placeholder="0" step="0.5" inputmode="decimal"><input type="text" placeholder="—">`;
   container.appendChild(div);
 }
 
-// ── Save workout ──────────────────────────────────────────────────────────────
 function saveWorkout() {
   const sets = [];
   document.querySelectorAll('.exercise-block').forEach(block => {
@@ -746,25 +391,22 @@ function saveWorkout() {
     block.querySelectorAll('.set-row').forEach((row, i) => {
       const inputs = row.querySelectorAll('input');
       sets.push({
-        exercise:   name,
-        set_number: i + 1,
-        reps:       parseInt(inputs[0].value) || null,
-        weight_kg:  parseFloat(inputs[1].value) || null,
-        notes:      inputs[2].value || null,
+        exercise: name, set_number: i + 1,
+        reps: parseInt(inputs[0].value) || null,
+        weight_kg: parseFloat(inputs[1].value) || null,
+        notes: inputs[2].value || null,
       });
     });
   });
-
   const data = {
-    type:         'workout',
-    log_date:     document.getElementById('wo-date').value,
+    type: 'workout',
+    log_date: document.getElementById('wo-date').value,
     session_type: selectedSession,
     duration_min: parseInt(document.getElementById('wo-dur').value) || null,
-    rpe:          selectedRpe,
-    notes:        document.getElementById('wo-notes').value || null,
+    rpe: selectedRpe,
+    notes: document.getElementById('wo-notes').value || null,
     sets,
   };
-
   downloadJSON(data, 'workout');
   toast('Downloaded — AirDrop to Mac ✓');
   document.getElementById('ex-container').innerHTML = '';
@@ -773,38 +415,152 @@ function saveWorkout() {
   exCount = 0;
 }
 
-// ── Save meal ─────────────────────────────────────────────────────────────────
-function saveMeal() {
-  const data = {
-    type:        'meal',
-    log_date:    document.getElementById('m-date').value,
-    meal_type:   document.getElementById('m-type').value,
-    description: document.getElementById('m-desc').value || null,
-    calories:    parseInt(document.getElementById('m-kcal').value) || null,
-    protein_g:   parseFloat(document.getElementById('m-prot').value) || null,
-    carbs_g:     parseFloat(document.getElementById('m-carbs').value) || null,
-    fat_g:       parseFloat(document.getElementById('m-fat').value) || null,
-  };
-
-  downloadJSON(data, 'meal');
-  toast('Downloaded — AirDrop to Mac ✓');
-  ['m-desc','m-kcal','m-prot','m-carbs','m-fat'].forEach(id =>
-    document.getElementById(id).value = '');
+// ── Meal: food search ──
+function searchFoods() {
+  clearTimeout(searchTimer);
+  const q = document.getElementById('food-search').value.trim().toLowerCase();
+  const resultsEl = document.getElementById('search-results');
+  if (q.length < 1) { resultsEl.style.display = 'none'; return; }
+  searchTimer = setTimeout(() => {
+    const matches = cachedFoods.filter(f =>
+      f.name.toLowerCase().includes(q) || (f.brand || '').toLowerCase().includes(q)
+    ).slice(0, 20);
+    if (!matches.length) {
+      resultsEl.innerHTML = `<div class="search-result"><div class="search-result-info"><div class="search-result-name" style="color:var(--muted)">No matches in library</div><div class="search-result-sub">${cachedFoods.length === 0 ? 'Tap Sync in Foods tab first' : 'Try a different search term'}</div></div></div>`;
+    } else {
+      resultsEl.innerHTML = matches.map(f => `
+        <div class="search-result" onclick='selectFood(${JSON.stringify(f).replace(/'/g, "&apos;")})'>
+          <div class="search-result-info">
+            <div class="search-result-name">${f.name}${f.brand ? ' · ' + f.brand : ''}</div>
+            <div class="search-result-sub">${f.kcal_per_100g || '—'} kcal · ${f.protein_per_100g || 0}g protein / 100g</div>
+          </div>
+          <span class="source-pill local">+</span>
+        </div>`).join('');
+    }
+    resultsEl.style.display = 'block';
+  }, 150);
 }
 
-// ── Save weight ───────────────────────────────────────────────────────────────
+function selectFood(food) {
+  selectedItems.push({ food, grams: 100 });
+  document.getElementById('food-search').value = '';
+  document.getElementById('search-results').style.display = 'none';
+  renderItems();
+}
+
+function removeItem(idx) { selectedItems.splice(idx, 1); renderItems(); }
+function updateGrams(idx, val) { selectedItems[idx].grams = parseFloat(val) || 0; renderMacroTotals(); }
+
+function renderItems() {
+  const el = document.getElementById('selected-items');
+  if (!selectedItems.length) {
+    el.innerHTML = '';
+    document.getElementById('macros-summary').style.display = 'none';
+    return;
+  }
+  el.innerHTML = selectedItems.map((item, idx) => `
+    <div class="item-row">
+      <div class="item-info">
+        <div class="item-name">${item.food.name}</div>
+        <div class="item-macros">${item.food.kcal_per_100g || '—'} kcal · ${item.food.protein_per_100g || 0}g P / 100g</div>
+      </div>
+      <input type="number" class="item-grams" value="${item.grams}" min="0" inputmode="decimal" onchange="updateGrams(${idx}, this.value)">
+      <span style="font-size:11px;color:var(--muted)">g</span>
+      <button class="item-remove" onclick="removeItem(${idx})">✕</button>
+    </div>`).join('');
+  renderMacroTotals();
+}
+
+function renderMacroTotals() {
+  let kcal = 0, prot = 0, carbs = 0, fat = 0;
+  selectedItems.forEach(({ food, grams }) => {
+    const r = grams / 100;
+    kcal  += (food.kcal_per_100g    || 0) * r;
+    prot  += (food.protein_per_100g || 0) * r;
+    carbs += (food.carbs_per_100g   || 0) * r;
+    fat   += (food.fat_per_100g     || 0) * r;
+  });
+  document.getElementById('m-tot-kcal').textContent  = Math.round(kcal);
+  document.getElementById('m-tot-prot').textContent  = prot.toFixed(1);
+  document.getElementById('m-tot-carbs').textContent = carbs.toFixed(1);
+  document.getElementById('m-tot-fat').textContent   = fat.toFixed(1);
+  document.getElementById('macros-summary').style.display = 'grid';
+}
+
+function saveMeal() {
+  if (!selectedItems.length) { toast('Add at least one food', true); return; }
+  // Calculate macros locally
+  let kcal = 0, prot = 0, carbs = 0, fat = 0, fibre = 0;
+  selectedItems.forEach(({ food, grams }) => {
+    const r = grams / 100;
+    kcal  += (food.kcal_per_100g    || 0) * r;
+    prot  += (food.protein_per_100g || 0) * r;
+    carbs += (food.carbs_per_100g   || 0) * r;
+    fat   += (food.fat_per_100g     || 0) * r;
+    fibre += (food.fibre_per_100g   || 0) * r;
+  });
+  const data = {
+    type: 'meal',
+    log_date: document.getElementById('m-date').value,
+    meal_type: document.getElementById('m-type').value,
+    description: document.getElementById('m-desc').value || null,
+    calories: Math.round(kcal),
+    protein_g: +prot.toFixed(1),
+    carbs_g: +carbs.toFixed(1),
+    fat_g: +fat.toFixed(1),
+    fibre_g: +fibre.toFixed(1),
+    items: selectedItems.map(i => ({ food_id: i.food.id, grams: i.grams })),
+  };
+  downloadJSON(data, 'meal');
+  toast('Downloaded — AirDrop to Mac ✓');
+  selectedItems = [];
+  document.getElementById('m-desc').value = '';
+  renderItems();
+}
+
+function saveAsTemplate() {
+  toast('Templates need API — sync first', true);
+}
+
+// ── Templates ──
+function loadTemplates() {
+  const el = document.getElementById('template-list');
+  if (!cachedTemplates.length) {
+    el.innerHTML = '<div style="color:var(--muted);font-size:12px;padding:8px 0">No templates cached — sync from Foods tab.</div>';
+    return;
+  }
+  el.innerHTML = cachedTemplates.map(t => `
+    <div class="template-pill" onclick="useTemplate(${t.id})">
+      <div>
+        <div class="template-name">${t.name}</div>
+        <div class="template-meta">${t.items.length} items · ${t.meal_type || 'any'}</div>
+      </div>
+      <span style="color:var(--accent);font-family:var(--display);font-size:14px;font-weight:700">USE →</span>
+    </div>`).join('');
+}
+
+function useTemplate(id) {
+  const tpl = cachedTemplates.find(t => t.id === id);
+  if (!tpl) return;
+  // Load template's items into the form
+  selectedItems = tpl.items.map(i => ({ food: i.food, grams: parseFloat(i.grams) }));
+  document.getElementById('m-type').value = tpl.meal_type || 'Breakfast';
+  document.getElementById('m-desc').value = tpl.description || tpl.name;
+  renderItems();
+  toast(`Loaded ${tpl.name} — adjust and save`);
+}
+
+// ── Weight ──
 function saveWeight() {
   const kg = parseFloat(document.getElementById('wt-kg').value);
   if (!kg) { toast('Enter a weight', true); return; }
-
   const data = {
-    type:      'weight',
-    log_date:  document.getElementById('wt-date').value,
+    type: 'weight',
+    log_date: document.getElementById('wt-date').value,
     weight_kg: kg,
-    waist_cm:  parseFloat(document.getElementById('wt-waist').value) || null,
-    notes:     document.getElementById('wt-notes').value || null,
+    waist_cm: parseFloat(document.getElementById('wt-waist').value) || null,
+    notes: document.getElementById('wt-notes').value || null,
   };
-
   downloadJSON(data, 'weight');
   toast('Downloaded — AirDrop to Mac ✓');
   document.getElementById('wt-kg').value = '';
@@ -812,13 +568,27 @@ function saveWeight() {
   document.getElementById('wt-notes').value = '';
 }
 
-// ── History ───────────────────────────────────────────────────────────────────
-function loadHistory() {
-  document.getElementById('h-workouts').innerHTML =
-    '<div class="empty"><div class="empty-icon">📲</div><p>History is available on the Mac dashboard — this app runs offline.</p></div>';
-  document.getElementById('h-meals').innerHTML = '';
-  document.getElementById('h-weights').innerHTML = '';
+// ── Foods library ──
+async function loadFoods() {
+  const el = document.getElementById('foods-list');
+  document.getElementById('cache-status').textContent =
+    `${cachedFoods.length} foods · ${cachedTemplates.length} templates cached`;
+  if (!cachedFoods.length) {
+    el.innerHTML = '<div class="empty"><div class="empty-icon">🍽️</div><p>No foods cached. Tap Sync above to download your library from the API.</p></div>';
+    return;
+  }
+  el.innerHTML = cachedFoods.map(f => `
+    <div class="entry">
+      <div class="entry-title" style="font-size:16px">${f.name}${f.brand ? ' · ' + f.brand : ''}</div>
+      <div class="entry-sub">${f.kcal_per_100g || '—'} kcal · P${f.protein_per_100g || 0} · C${f.carbs_per_100g || 0} · F${f.fat_per_100g || 0} (per 100g)</div>
+    </div>`).join('');
 }
+
+// Stub functions for offline mode
+function searchOFF() { toast('Search needs WiFi — use Sync button', true); }
+function importFood() { toast('Import needs WiFi', true); }
+function addCustomFood() { toast('Custom foods need API — use the desktop UI', true); }
+function deleteFood() { toast('Delete needs API — use the desktop UI', true); }
 </script>
 </body>
 </html>
